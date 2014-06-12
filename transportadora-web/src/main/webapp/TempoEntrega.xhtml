@@ -1,0 +1,51 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:o="http://omnifaces.org/ui">
+
+    <ui:define name="titulo">Tempo de Entrega</ui:define>
+    
+    <ui:define name="corpo">
+    	<h1>Tempo de entrega</h1>
+    	
+    	<h:form id="frmCadastro">
+    		<p:messages id="messages" autoUpdate="true" closable="true" />
+    		
+	    	<p:toolbar style="margin-top: 20px">
+	    		<f:facet name="left">
+	    			<p:commandButton value="Registrar" action="#{tempoEntregaBean.registrar}" update="@form"/>
+	    		</f:facet>
+	    	</p:toolbar>
+	    	
+	    	<p:panelGrid columns="2" id="painel" style="width: 100%; margin-top: 20px"
+	    			columnClasses="rotulo, campo">
+	    		<p:outputLabel value="Destino" for="destino"/>
+	    		<p:selectOneMenu id="destino" value="#{tempoEntregaBean.destinoSelecionado}">
+	    			<f:selectItem itemLabel="Selecione o destino" />
+	    			<f:selectItems value="#{tempoEntregaBean.todosDestinos}" var="destino" 
+						itemLabel="#{destino.nome}" itemValue="#{destino}"/>
+	    		</p:selectOneMenu>
+	    		
+	    		<p:outputLabel value="Tipo de Entrega" for="tipoEntrega"/>
+	    		<p:selectOneMenu id="tipoEntrega" value="#{tempoEntregaBean.tipoEntregaSelecionada}">
+	    			<f:selectItem itemLabel="Selecione o tipo de entrega" />
+	    			<f:selectItems value="#{tempoEntregaBean.tiposEntregas}" var="tipoEntrega" 
+						itemLabel="#{tipoEntrega}" itemValue="#{tipoEntrega}"/>
+	    		</p:selectOneMenu>
+	    		
+	    		<p:outputLabel value="Tipo de Notificação" for="tipoNotificacao"/>
+	    		<p:selectOneMenu id="tipoNotificacao" value="#{tempoEntregaBean.tipoNotificadorSelecionado}">
+	    			<f:selectItem itemLabel="Selecione o tipo de notificação" />
+	    			<f:selectItems value="#{tempoEntregaBean.tiposNotificadores}" var="tipoNotificador" 
+						itemLabel="#{tipoNotificador}" itemValue="#{tipoNotificador}"/>
+	    		</p:selectOneMenu>
+	    		
+	    		<p:outputLabel value="Destinatário" for="destinatario" />
+	    		<p:password id="destinatario" value="#{tempoEntregaBean.destinatario}" />
+	    	</p:panelGrid>
+    	</h:form>
+    </ui:define>
+</ui:composition>
